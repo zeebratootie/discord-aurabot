@@ -5,21 +5,21 @@ import { execShellCommand } from '../helpers/global';
 export default {
     name: 'host',
     category: 'Aura Bot',
-    description: 'Request Aura to host a game with a given map (use DM or in guild).',
+    description: 'Host a TWRPG game (pub or priv).',
     ownerOnly: (process.env.USAGE == "public") ? true:false,
     guildOnly: false,
     slash: true,
     testOnly: (process.env.NODE_ENV == "development") ? true:false,
     options: [
         {
-            name: 'gamename',
-            description: 'name of the game to host',
-            required: true,
+            name: 'visibility',
+            description: 'pub or priv (default: pub)',
+            required: false,
             type: 3,
         },
         {
-            name: 'visibility',
-            description: "pub or priv (default: pub)",
+            name: 'gamename',
+            description: 'name of the game to host (default: twrpg)',
             required: false,
             type: 3,
         }
@@ -30,12 +30,9 @@ export default {
 
         await interaction.deferReply();
 
-    const gamename = interaction.options.getString('gamename')!;
-    const visibility = (interaction.options.getString('visibility') || 'pub').toLowerCase();
-
-    // Default map/config for The World War 3 map
-    const map = 'twre';
-    const config = 'twre';
+        const visibility = (interaction.options.getString('visibility') || 'pub').toLowerCase();
+        const gamename = interaction.options.getString('gamename') || 'twrpg';
+        const map = 'twre';
 
         const auraPath = process.env.AURABOT_ADDRESS;
         if (!auraPath) {
@@ -43,11 +40,8 @@ export default {
             return;
         }
 
-    // Compose the host command using default map/config 'twre'.
-    // We use the more explicit syntax: host <MAP> , <OBSERVERS> , <VISIBILITY> , <GAME NAME>
-    // Leave observers blank.
-    // Example: !host twre, , pub, MyGame
-    const cmd = `!host ${map}, , ${visibility}, ${gamename}`;
+        // !host <CONFIG>, , <VISIBILITY>, <GAME NAME>
+        const cmd = `!host ${map}, , ${visibility}, ${gamename}`;
 
         try {
             // Ensure commands folder exists

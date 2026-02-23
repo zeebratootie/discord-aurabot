@@ -109,9 +109,9 @@ pm2 save
 
 Additional commands
 
-- /host(map, gamename, visibility, config?) - Request aura-bot to host a game. visibility is 'pub' or 'priv'. (owner/private only)
+- /host(visibility?, gamename?) - Host a TWRPG game. visibility is 'pub' or 'priv' (default: pub). gamename defaults to 'twrpg'. (owner/private only)
 
 Environment variables used by /host:
 
 - AURABOT_ADDRESS - Path to your aura-bot installation (used to write a queued command file). Example: /home/ubuntu/aura-bot
-- AURABOT_CONTROL_CMD (optional) - If set, this command will be executed with the just-created command file as an argument. Use this if you have a control script to notify aura.
+- AURABOT_CONTROL_CMD (optional) - If set, this command will be executed with the just-created command file as an argument.
