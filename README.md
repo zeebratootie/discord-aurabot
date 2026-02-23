@@ -24,7 +24,7 @@ Use Slash Commands
 
 clone repo
 ```cmd
-git clone 'https://github.com/Lch3181/discord-aurabot.git'
+git clone 'https://github.com/zeebratootie/discord-aurabot.git'
 ```
 
 create .env file    
