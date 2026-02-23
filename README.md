@@ -106,3 +106,12 @@ pm2 save
 - /uploadmap(url, filename, config name) **botowner/private only**
 - /auto_upload_map(channel, config name) **botowner/private only**
 - /cmd(syntax) **botowner only**
+
+Additional commands
+
+- /host(map, gamename, visibility, config?) - Request aura-bot to host a game. visibility is 'pub' or 'priv'. (owner/private only)
+
+Environment variables used by /host:
+
+- AURABOT_ADDRESS - Path to your aura-bot installation (used to write a queued command file). Example: /home/ubuntu/aura-bot
+- AURABOT_CONTROL_CMD (optional) - If set, this command will be executed with the just-created command file as an argument. Use this if you have a control script to notify aura.
